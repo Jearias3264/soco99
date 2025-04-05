@@ -1,0 +1,31 @@
+<form id="registroForm" action="https://script.google.com/macros/s/AKfycbxnN8mFBtysBssj7EINTiJZDjylw7XimmlGiPw68_42IiL_A1DSBcteURVNIIbiTqmM/exec" method="POST">
+  <label>Cédula: <input type="text" name="cedula" pattern="\d+" required></label><br>
+  <label>Lateral: <input type="text" name="lateral" pattern="\d+" required></label><br>
+  <label>Motivo:</label>
+  <select name="motivo" required>
+    <option value="">Seleccione un motivo</option>
+    <option value="Llantas">Llantas</option>
+    <option value="Caja">Caja</option>
+    <option value="Motor">Motor</option>
+  </select><br>
+  <input type="hidden" name="fechaHora" id="fechaHora">
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+  function actualizarFechaHora() {
+    const ahora = new Date();
+    const fechaHora = ahora.toLocaleString();
+    document.getElementById("fechaHora").value = fechaHora;
+  }
+
+  actualizarFechaHora();
+
+  document.getElementById("registroForm").addEventListener("submit", function(e) {
+    setTimeout(() => {
+      this.reset();
+      actualizarFechaHora();
+    }, 500); // espera medio segundo para que se envíe correctamente antes de limpiar
+  });
+</script>
+
